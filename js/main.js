@@ -1,11 +1,11 @@
 const pages = {
 	home: {
 		title: '¡QUIZ DICES!',
-		content: 'ESTA ES LA PÁGINA PRINCIPAL',
+		content: 'BIENVENIDO TRIVIALERO',
 	},
 	question: {
 		title: '¡NO VA MÁS!',
-		content: 'ESTA ES LA PÁGINA DEL JUEGO PRINCIPAL',
+		content: 'PULSE EL BOTÓN CUANDO ESTÉS LISTO',
 	},
 	results: {
 		title: 'PUNTOS',
@@ -16,7 +16,7 @@ const pages = {
 function goTo(section) {
 	let idSection = document.getElementById('psa-page');
 
-	while(idSection.firstChild) {
+	while (idSection.firstChild) {
 		idSection.removeChild(idSection.firstChild);
 	}
 
@@ -37,14 +37,17 @@ function goTo(section) {
 
 		if (section == 'home') {
 			divContent.classList.add('home');
+			lineBreak(divContent, 1)
 			homePage();
 		}
 		else if (section == 'question') {
 			divContent.classList.add('question');
+			lineBreak(divContent, 1)
 			questionPage();
 		}
 		else if (section == 'results') {
 			divContent.classList.add('results');
+			lineBreak(divContent, 2)
 			resultsPage();
 		}
 	} else {
@@ -56,30 +59,56 @@ function homePage() {
 	let divQuestion = document.createElement('div')
 
 	let pQuestion = document.createElement('p');
-	pQuestion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+	pQuestion.textContent = '¡Bienvenidos al desafío de conocimientos! En este trivial de 10 preguntas, pondremos a prueba tu memoria, agudeza mental y curiosidad sobre diversos temas. Cada pregunta contará con 4 opciones, pero solo una será la correcta. ¡Demuestra tu ingenio y veamos qué tan lejos llegas! Prepárate para disfrutar y aprender mientras te diviertes.';
 
-	divQuestion.appendChild(pQuestion)
+	let pQuestion2 = document.createElement('p');
+	pQuestion2.textContent = '¿Serás capaz de acertar en todas?';
+
+	divQuestion.appendChild(pQuestion);
+	lineBreak(divQuestion, 1);
+	divQuestion.appendChild(pQuestion2);
 	document.getElementsByClassName('home')[0].appendChild(divQuestion);
 }
 
 function questionPage() {
-	let divQuestion = document.createElement('div')
+	let divQuestion = document.createElement('div');
 
-	let pQuestion = document.createElement('p');
-	pQuestion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+	let btnPlay = document.createElement('button');
+	btnPlay.classList.add('btn-play');
+	btnPlay.textContent = "EMPEZAR"
 
-	divQuestion.appendChild(pQuestion)
+	divQuestion.appendChild(btnPlay);
 	document.getElementsByClassName('question')[0].appendChild(divQuestion);
 }
 
 function resultsPage() {
-	let divQuestion = document.createElement('div')
+	let divQuestion = document.createElement('div');
 
 	let pQuestion = document.createElement('p');
-	pQuestion.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+	pQuestion.textContent = 'SE INSERTARÁ UNA GRÁFICA';
 
-	divQuestion.appendChild(pQuestion)
+	divQuestion.appendChild(pQuestion);
+
+	let divFooter = document.createElement('div');
+	divFooter.classList.add('footer');
+
+	let spanFooter = document.createElement('span');
+	divFooter.classList.add('footer-text');
+	spanFooter.textContent = '© Todos los derechos no reservados han hecho posible la creación de esta web.';
+
+	divFooter.appendChild(spanFooter);
+
 	document.getElementsByClassName('results')[0].appendChild(divQuestion);
+	document.getElementsByClassName('results')[0].appendChild(divFooter);
+}
+
+function lineBreak(father, manylb) {
+
+	for (let i = 0; i < manylb; i++) {
+		let lb = document.createElement('br');
+
+		father.appendChild(lb);
+	}
 }
 
 goTo('home');
