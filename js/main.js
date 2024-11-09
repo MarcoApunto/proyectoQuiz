@@ -68,6 +68,8 @@ function homePage() {
 	lineBreak(divQuestion, 1);
 	divQuestion.appendChild(pQuestion2);
 	document.getElementsByClassName('home')[0].appendChild(divQuestion);
+
+	removeFooter();
 }
 
 function questionPage() {
@@ -79,6 +81,8 @@ function questionPage() {
 
 	divQuestion.appendChild(btnPlay);
 	document.getElementsByClassName('question')[0].appendChild(divQuestion);
+
+	removeFooter();
 }
 
 function resultsPage() {
@@ -89,17 +93,7 @@ function resultsPage() {
 
 	divQuestion.appendChild(pQuestion);
 
-	let divFooter = document.createElement('div');
-	divFooter.classList.add('footer');
-
-	let spanFooter = document.createElement('span');
-	divFooter.classList.add('footer-text');
-	spanFooter.textContent = '© Todos los derechos no reservados han hecho posible la creación de esta web.';
-
-	divFooter.appendChild(spanFooter);
-
-	document.getElementsByClassName('results')[0].appendChild(divQuestion);
-	document.getElementsByClassName('results')[0].appendChild(divFooter);
+	createFakeFooter();
 }
 
 function lineBreak(father, manylb) {
@@ -108,6 +102,58 @@ function lineBreak(father, manylb) {
 		let lb = document.createElement('br');
 
 		father.appendChild(lb);
+	}
+}
+
+function createFakeFooter() {
+	let containerClass = document.getElementsByTagName('div')[1];
+
+	let fakeFooter = document.createElement('section');
+	fakeFooter.setAttribute('id', 'footer');
+
+	let spanFooter = document.createElement('span');
+	spanFooter.classList.add('footer-text');
+	spanFooter.textContent = '© Todos los derechos no reservados han hecho posible la creación de esta web.';
+
+	let aLinkedin = document.createElement('a');
+	aLinkedin.href = 'https://www.linkedin.com/in/marcofs/';
+	aLinkedin.target = '_blank';
+	aLinkedin.title = 'linkedin';
+	aLinkedin.classList.add('icons');
+
+	let iconLinkedin = document.createElement('i');
+	iconLinkedin.classList.add('fa-brands');
+	iconLinkedin.classList.add('fa-linkedin');
+	iconLinkedin.ariaHidden = true;
+
+	let aGithub = document.createElement('a');
+	aGithub.href = 'https://github.com/MarcoApunto';
+	aGithub.target = '_blank';
+	aGithub.title = 'github';
+	aGithub.classList.add('icons');
+
+	let iconGithub = document.createElement('i');
+	iconGithub.classList.add('fa-brands');
+	iconGithub.classList.add('fa-github');
+	iconLinkedin.ariaHidden = true;
+
+	fakeFooter.appendChild(spanFooter);
+	lineBreak(spanFooter, 1);
+	aLinkedin.appendChild(iconLinkedin);
+	spanFooter.appendChild(aLinkedin);
+	aGithub.appendChild(iconGithub);
+	spanFooter.appendChild(aGithub);
+
+	containerClass.appendChild(fakeFooter);
+
+}
+
+function removeFooter() {
+	let idFooter = document.getElementById('footer');
+	console.log(idFooter);
+
+	if(idFooter) {
+		idFooter.remove();
 	}
 }
 
