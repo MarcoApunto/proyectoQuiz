@@ -33,19 +33,22 @@
 
 ⏳Interpretar la estructura pensada para la interfaz del Quiz
 
-> div - div-quiz
-> 	div - div-header
-> 		title
-> 		Contador de preguntas
-> 	div
-> 	div - div-question
-> 		title pregunta
-> 		lista
-> 	div
-> 	div - btn-quiz
-> 		botones
-> 	div
-> div
+```
+div - div-quiz
+	div - div-header
+		title
+		Contador de preguntas
+	div
+	div - div-question
+		title pregunta
+		lista
+	div
+	div - btn-quiz
+		botones
+	div
+div
+```
+
 
 ⏳Algoritmo de aleatoridad de las opciones.
 
