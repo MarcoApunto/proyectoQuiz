@@ -23,15 +23,25 @@
 
 ✅Estilo de la web: colores, fuentes, distribución, textos...
 
-✅DOM avanzado: Creación de SPA, secciones, borrado y creaciones de contenido
+✅DOM avanzado: Creación de SPA, secciones, borrado y creaciones de contenido.
 
-✅Falso footer
+✅Falso footer.
 
-✅Fetch y guardado de valores para su uso posterior
+✅Fetch y guardado de valores para su uso posterior.
+
+⏳Decodear formato de la API - Meter el valor en el textarea
+
+```
+function decodeHtml(html) {
+	var txt = document.createElement("textarea");
+	txt.innerHTML = html;
+	return txt.value;
+}
+```
 
 ⏳Separar botones del div de la lista.
 
-⏳Interpretar la estructura pensada para la interfaz del Quiz
+⏳Interpretar la estructura pensada para la interfaz del Quiz:
 
 ```
 div - div-quiz
@@ -48,7 +58,6 @@ div - div-quiz
 	div
 div
 ```
-
 
 ⏳Algoritmo de aleatoridad de las opciones.
 
