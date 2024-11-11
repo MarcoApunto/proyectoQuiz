@@ -13,11 +13,13 @@
 > [!NOTE]
 > 🖌 Añadir reglas CSS para el contenido.
 
+> [!NOTE]
+> 🪄 Fetch API -> Analizar✅, entender✅ y usarla❌.
+
 > [!WARNING]
 > ❌ ALGORITMOS.
 
-> [!CAUTION]
-> 💀 Fetch API -> Analizar, entender y usarla.
+
 
 ## WEB VIEW ACTUAL
 
