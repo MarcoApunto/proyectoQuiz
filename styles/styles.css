@@ -93,6 +93,17 @@ body {
 	text-align: center;
 }
 
+.btn-play {
+	color: #D35700;
+	padding: 0.7em 1.7em;
+	font-size: 18px;
+	border-radius: 0.5em;
+	background: #672B00;
+	cursor: pointer;
+	border: 1px solid #D35700;
+	box-shadow: 6px 6px 12px #672B00, -6px -6px 12px #672B00;
+}
+
 .results {
 	font-size: 16px;
 	text-align: center;
