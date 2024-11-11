@@ -1,7 +1,7 @@
 const pages = {
 	home: {
 		title: '¡QUIZ DICES!',
-		content: 'BIENVENIDO TRIVIALERO',
+		content: 'BUENAS TRIVIALERO',
 	},
 	question: {
 		title: '¡NO VA MÁS!',
@@ -59,7 +59,7 @@ function homePage() {
 	let divQuestion = document.createElement('div')
 
 	let pQuestion = document.createElement('p');
-	pQuestion.textContent = '¡Bienvenidos al desafío de conocimientos! En este trivial de 10 preguntas, pondremos a prueba tu memoria, agudeza mental y curiosidad sobre diversos temas. Cada pregunta contará con 4 opciones, pero solo una será la correcta. ¡Demuestra tu ingenio y veamos qué tan lejos llegas! Prepárate para disfrutar y aprender mientras te diviertes.';
+	pQuestion.textContent = '¡Bienvenido al desafío de conocimientos! En este trivial de 10 preguntas, pondremos a prueba tu memoria, agudeza mental y curiosidad sobre diversos temas. Cada pregunta contará con 4 opciones, pero solo una será la correcta. ¡Demuestra tu ingenio y veamos qué tan lejos llegas! Prepárate para disfrutar y aprender mientras te diviertes.';
 
 	let pQuestion2 = document.createElement('p');
 	pQuestion2.textContent = '¿Serás capaz de acertar en todas?';
@@ -76,8 +76,9 @@ function questionPage() {
 	let divQuestion = document.createElement('div');
 
 	let btnPlay = document.createElement('button');
+	btnPlay.setAttribute("onclick", "gameStart();")
 	btnPlay.classList.add('btn-play');
-	btnPlay.textContent = "EMPEZAR"
+	btnPlay.textContent = "EMPEZAR";
 
 	divQuestion.appendChild(btnPlay);
 	document.getElementsByClassName('question')[0].appendChild(divQuestion);
@@ -156,5 +157,75 @@ function removeFooter() {
 		idFooter.remove();
 	}
 }
+
+function gameStart() {
+	let divContainer = document.getElementById('psa-page');
+
+	let getElem = document.getElementsByClassName('question');
+	if (getElem) {
+		getElem[0].remove();
+	}
+
+	createGame(divContainer);
+}
+
+function createGame(father) {
+	let divQuiz = document.createElement('div');
+	divQuiz.setAttribute('class', 'quiz-container');
+
+	let divHeader = document.createElement('div');
+	divHeader.setAttribute('class', 'quiz-header');
+	let titleHeader = document.createElement('h1');
+	titleHeader.textContent = '¡QUIZ DICES!';
+
+	let divQuestion = document.createElement('div');
+	divHeader.setAttribute('class', 'quiz-header');
+	let titleQuestion = document.createElement('h2');
+	titleQuestion.textContent = 'Pepito se fue a comprar, ¿Que compró Pepito si fue a una bollería?'
+
+	let listOptions = document.createElement('ul');
+	let option1 = document.createElement('li');
+	option1.textContent = 'o1';
+
+	let option2 = document.createElement('li');
+	option2.textContent = 'o2';
+
+	let option3 = document.createElement('li');
+	option3.textContent = 'o3';
+
+	let option4 = document.createElement('li');
+	option4.textContent = 'o4';
+
+	let btnNext = document.createElement('button');
+	btnNext.type = 'button'
+	btnNext.textContent = 'Validar'
+
+	let btnExit = document.createElement('button');
+	btnExit.type = 'button'
+	btnExit.textContent = 'Salir'
+
+	divQuestion.appendChild(titleQuestion);
+	listOptions.appendChild(option1);
+	listOptions.appendChild(option2);
+	listOptions.appendChild(option3);
+	listOptions.appendChild(option4);
+	listOptions.appendChild(btnNext);
+	listOptions.appendChild(btnExit);
+	divQuestion.appendChild(listOptions);
+
+	divHeader.appendChild(titleHeader)
+	divQuiz.appendChild(divHeader); /* Contain h1 -> Quiz Dices y contador de preguntas*/
+
+	divQuiz.appendChild(divQuestion);
+
+	father.appendChild(divQuiz);
+}
+
+/*
+ul
+	li*4 -> options
+div
+	p -> result
+*/
 
 goTo('home');
