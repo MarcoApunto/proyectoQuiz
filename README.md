@@ -19,6 +19,43 @@
 > [!WARNING]
 > ❌ ALGORITMOS.
 
+✅Estructura de la web.
+
+✅Estilo de la web: colores, fuentes, distribución, textos...
+
+✅DOM avanzado: Creación de SPA, secciones, borrado y creaciones de contenido
+
+✅Falso footer
+
+✅Fetch y guardado de valores para su uso posterior
+
+⏳Separar botones del div de la lista.
+
+⏳Interpretar la estructura pensada para la interfaz del Quiz
+
+> div - div-quiz
+> 	div - div-header
+> 		title
+> 		Contador de preguntas
+> 	div
+> 	div - div-question
+> 		title pregunta
+> 		lista
+> 	div
+> 	div - btn-quiz
+> 		botones
+> 	div
+> div
+
+⏳Algoritmo de aleatoridad de las opciones.
+
+⏳"Oculta" la respuesta correcta.
+
+⏳Cuando termine las 10 preguntas, llevarte a la "página" de score.
+
+⏳Dar estilo al quiz.
+
+⏳⏳⏳Por desglosar puntuación...
 
 
 ## WEB VIEW ACTUAL
