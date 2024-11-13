@@ -151,9 +151,8 @@ function createFakeFooter() {
 
 function removeFooter() {
 	let idFooter = document.getElementById('footer');
-	console.log(idFooter);
 
-	if(idFooter) {
+	if (idFooter) {
 		idFooter.remove();
 	}
 }
@@ -174,58 +173,43 @@ function createGame(father) {
 	divQuiz.setAttribute('class', 'quiz-container');
 
 	let divHeader = document.createElement('div');
-	divHeader.setAttribute('class', 'quiz-header');
 	let titleHeader = document.createElement('h1');
 	titleHeader.textContent = '¡QUIZ DICES!';
 
 	let divQuestion = document.createElement('div');
-	divHeader.setAttribute('class', 'quiz-header');
 	let titleQuestion = document.createElement('h2');
 	titleQuestion.textContent = 'Pepito se fue a comprar, ¿Que compró Pepito si fue a una bollería?'
 
-	let listOptions = document.createElement('ul');
-	let option1 = document.createElement('li');
-	option1.textContent = 'o1';
+	let listOptions = document.createElement('div');
+	listOptions.setAttribute("id", "opts")
 
-	let option2 = document.createElement('li');
-	option2.textContent = 'o2';
+	let divBtn = document.createElement('div');
 
-	let option3 = document.createElement('li');
-	option3.textContent = 'o3';
-
-	let option4 = document.createElement('li');
-	option4.textContent = 'o4';
-
-	let btnNext = document.createElement('button');
-	btnNext.type = 'button'
-	btnNext.textContent = 'Validar'
+	let spnDivBtn = document.createElement('span');
+	spnDivBtn.setAttribute('class', 'btn-line');
 
 	let btnExit = document.createElement('button');
+	btnExit.setAttribute('class', 'btn-play');
 	btnExit.type = 'button'
 	btnExit.textContent = 'Salir'
 
 	divQuestion.appendChild(titleQuestion);
-	listOptions.appendChild(option1);
-	listOptions.appendChild(option2);
-	listOptions.appendChild(option3);
-	listOptions.appendChild(option4);
-	listOptions.appendChild(btnNext);
-	listOptions.appendChild(btnExit);
+	lineBreak(divQuestion, 1);
+
+	spnDivBtn.appendChild(btnExit);
+	divBtn.appendChild(spnDivBtn);
+
 	divQuestion.appendChild(listOptions);
 
-	divHeader.appendChild(titleHeader)
-	divQuiz.appendChild(divHeader); /* Contain h1 -> Quiz Dices y contador de preguntas*/
+	divHeader.appendChild(titleHeader);
 
+	divQuiz.appendChild(divHeader); /* Contain h1 -> Quiz Dices y contador de preguntas*/
+	lineBreak(divQuestion, 2);
 	divQuiz.appendChild(divQuestion);
+	divQuiz.appendChild(divBtn);
 
 	father.appendChild(divQuiz);
+	doingListContent();
 }
-
-/*
-ul
-	li*4 -> options
-div
-	p -> result
-*/
 
 goTo('home');

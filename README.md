@@ -29,7 +29,7 @@
 
 ✅Fetch y guardado de valores para su uso posterior.
 
-⏳Decodear formato de la API - Meter el valor en el textarea
+✅Decodear formato de la API - Meter el valor en el textarea
 
 ```
 function decodeHtml(html) {
@@ -39,9 +39,9 @@ function decodeHtml(html) {
 }
 ```
 
-⏳Separar botones del div de la lista.
+✅Separar botones del div de la lista.
 
-⏳Interpretar la estructura pensada para la interfaz del Quiz:
+✅Interpretar la estructura pensada para la interfaz del Quiz:
 
 ```
 div - div-quiz
@@ -59,13 +59,15 @@ div - div-quiz
 div
 ```
 
+⏳Darle una vuelta con el script: doingListContent()
+
 ⏳Algoritmo de aleatoridad de las opciones.
 
 ⏳"Oculta" la respuesta correcta.
 
 ⏳Cuando termine las 10 preguntas, llevarte a la "página" de score.
 
-⏳Dar estilo al quiz.
+✅Dar estilo al quiz.
 
 ⏳⏳⏳Por desglosar puntuación...
 

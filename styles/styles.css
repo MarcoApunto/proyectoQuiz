@@ -109,6 +109,40 @@ body {
 	text-align: center;
 }
 
+.quiz-container {
+	text-align: center;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+.btn-line {
+	line-height: 25px;
+	width: 40px;
+	height: 25px;
+}
+
+#opts {
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+}
+
+#opts button {
+	background: #672b00;
+	color: #eb6302;
+	font-weight: 800;
+	margin: 10px 10px;
+	width: auto;
+	height: 50px;
+
+}
+
+#opts button:hover {
+	background: #D3570080;
+}
+
 #footer {
 	padding: 10px;
 	text-align: center;
