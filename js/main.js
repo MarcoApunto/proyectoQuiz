@@ -177,36 +177,15 @@ function createGame(father) {
 	titleHeader.textContent = '¡QUIZ DICES!';
 
 	let divQuestion = document.createElement('div');
-	let titleQuestion = document.createElement('h2');
-	titleQuestion.textContent = 'Pepito se fue a comprar, ¿Que compró Pepito si fue a una bollería?'
-
+	
 	let listOptions = document.createElement('div');
 	listOptions.setAttribute("id", "opts")
 
-	let divBtn = document.createElement('div');
-
-	let spnDivBtn = document.createElement('span');
-	spnDivBtn.setAttribute('class', 'btn-line');
-
-	let btnExit = document.createElement('button');
-	btnExit.setAttribute('class', 'btn-play');
-	btnExit.type = 'button'
-	btnExit.textContent = 'Salir'
-
-	divQuestion.appendChild(titleQuestion);
-	lineBreak(divQuestion, 1);
-
-	spnDivBtn.appendChild(btnExit);
-	divBtn.appendChild(spnDivBtn);
-
+	divHeader.appendChild(titleHeader);
 	divQuestion.appendChild(listOptions);
 
-	divHeader.appendChild(titleHeader);
-
 	divQuiz.appendChild(divHeader); /* Contain h1 -> Quiz Dices y contador de preguntas*/
-	lineBreak(divQuestion, 2);
 	divQuiz.appendChild(divQuestion);
-	divQuiz.appendChild(divBtn);
 
 	father.appendChild(divQuiz);
 	doingListContent();
