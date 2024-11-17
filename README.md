@@ -41,31 +41,19 @@ function decodeHtml(html) {
 
 ✅Separar botones del div de la lista.
 
-✅Interpretar la estructura pensada para la interfaz del Quiz:
+✅Estructura pensada para la interfaz del Quiz.
 
-```
-div - div-quiz
-	div - div-header
-		title
-		Contador de preguntas
-	div
-	div - div-question
-		title pregunta
-		lista
-	div
-	div - btn-quiz
-		botones
-	div
-div
-```
+✅Darle una vuelta con el script: doingListContent()
 
-⏳Darle una vuelta con el script: doingListContent()
+✅Algoritmo de aleatoridad de las opciones.
 
-⏳Algoritmo de aleatoridad de las opciones.
+✅"Oculta" la respuesta correcta.
 
-⏳"Oculta" la respuesta correcta.
+✅Echar par de ojos a la variable iQuiz.
 
 ⏳Cuando termine las 10 preguntas, llevarte a la "página" de score.
+
+⏳Nueva partida debería enseñar otro quiz de 10 preguntas.
 
 ✅Dar estilo al quiz.
 

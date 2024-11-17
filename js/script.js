@@ -17,18 +17,15 @@ function decodeHtml(value) {
 	return txt.value;
 }
 
-function doingListContent() {
-	let category = decodeHtml(results[0].category);
-	console.log("category: ", category);
+function doingListContent(index) {
+	if (!index)
+		index = 0;
 
-	let question = decodeHtml(results[0].question);
-	console.log("question: ", question);
+	let category = decodeHtml(results[index].category);
+	let question = decodeHtml(results[index].question);
 
-	let answer = decodeHtml(results[0].incorrect_answers + "," + results[0].correct_answer);
-	console.log("options: ", answer);
-
-	let answerSplitted = answer.split(',');
-	console.log(answerSplitted);
+	let incorrectAnswers = results[index].incorrect_answers.map(elem => decodeHtml(elem));
+	let correctAnswer = decodeHtml(results[index].correct_answer);
 
 	let quizContainer = document.getElementsByClassName('quiz-container')[0];
 	let listQuestions = document.getElementById('opts');
@@ -49,12 +46,16 @@ function doingListContent() {
 	listQuestions.appendChild(titleQuestion);
 	lineBreak(listQuestions, 1);
 
-	for (let i = 0; i < answerSplitted.length; i++) {
+	let answer = [...incorrectAnswers, correctAnswer];
+	answer = answer.sort(() => Math.random() - 0.5);
+
+	console.log('correct answer: ' + correctAnswer);
+	for (let i = 0; i < answer.length; i++) {
 		let btnOpts = document.createElement('button');
-		btnOpts.setAttribute('onclick', 'btnCheck' + i + '()');
-		btnOpts.setAttribute('class', 'btn-state' + i);
+		console.log('option' + i + ': ' + answer[i]);
+		btnOpts.setAttribute('onclick', `answerCheck('${answer[i]}')`);
 		btnOpts.type = 'button';
-		btnOpts.textContent = answerSplitted[i];
+		btnOpts.textContent = answer[i];
 		listQuestions.appendChild(btnOpts);
 	}
 
@@ -66,33 +67,38 @@ function doingListContent() {
 
 }
 
-function btnCheck0() {
-	let getBtn = document.getElementsByClassName('btn-state0')[0]
+function cleanQuizz() {
+	let quizContainer = document.getElementById('opts');
 
-	console.log(getBtn.innerHTML)
-	if (getBtn.innerHTML == results[0].correct_answer)
-		console.log("bien");
-	else
-		console.log("mal");
-
+	while (quizContainer.firstChild)
+		quizContainer.removeChild(quizContainer.firstChild);
 }
 
+let iQuiz = 0;
+/* let wrongAnswers = 0;
+let correctAnswers = 0; */
+function answerCheck(answerPulsed) {
+	if (iQuiz == 9) {
+		resultsPage();
+	} else if (iQuiz > 9) {
+		iQuiz = 0;
+	}
+
+	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer)) {
+		console.log("bien");
+		cleanQuizz();
+		doingListContent(++iQuiz);
+	}
+	else {
+		console.log("mal");
+		cleanQuizz();
+		doingListContent(++iQuiz);
+	}
+}
+
+
+
 /*
-let i = 1;
-while (i <= data['results'].length) {
-	console.log(data['results'].length)
-
-	i++;
-} */
-
-/* let category = decodeHtml(data["results"][0].category);
-		console.log("category: ", category);
-
-		let question = decodeHtml(data["results"][0].question);
-		console.log("question: ", question);
-
-		let Answer = decodeHtml(data["results"][0].incorrect_answers + "," + data["results"][0].correct_answer);
-		console.log("incorrect: ", Answer); 
 
 0: 
 "December 14, 1946"
