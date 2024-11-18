@@ -1,8 +1,8 @@
-async function getQuiz(){
+async function getQuiz() {
 	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
 	let data = await response.json();
 
-	return data;
+	return data['results'];
 }
 
 /* const results = []
@@ -26,7 +26,16 @@ function doingListContent(index) {
 	if (!index)
 		index = 0;
 
-	let results = getQuiz();
+	let results = [];
+	if (index == 0)
+		getQuiz().then(data => {
+			console.log(data[index]);
+			for (let i = 0; i < data.length; i++) {
+				results.push(data[i]);
+			}
+	})
+
+	console.log('is results: ' + results[index]);
 
 	let category = decodeHtml(results[index].category);
 	let question = decodeHtml(results[index].question);
