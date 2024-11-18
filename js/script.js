@@ -1,4 +1,11 @@
-const results = []
+function getQuiz(){
+	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
+	let data = await response.json();
+
+	return data;
+}
+
+/* const results = []
 
 fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple')
 	.then(data => data.json())
@@ -7,9 +14,7 @@ fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple')
 			results.push(data['results'][i]);
 		}
 	})
-	.catch(error => console.log("error: " + error));
-
-console.log(results);
+	.catch(error => console.log("error: " + error)); */
 
 function decodeHtml(value) {
 	var txt = document.createElement("textarea");
@@ -20,6 +25,8 @@ function decodeHtml(value) {
 function doingListContent(index) {
 	if (!index)
 		index = 0;
+
+	let results = getQuiz();
 
 	let category = decodeHtml(results[index].category);
 	let question = decodeHtml(results[index].question);
@@ -47,7 +54,7 @@ function doingListContent(index) {
 	lineBreak(listQuestions, 1);
 
 	let answer = [...incorrectAnswers, correctAnswer];
-	answer = answer.sort(() => Math.random() - 0.5);
+	answer.sort(() => Math.random() - 0.5);
 
 	console.log('correct answer: ' + correctAnswer);
 	for (let i = 0; i < answer.length; i++) {
@@ -83,6 +90,8 @@ function answerCheck(answerPulsed) {
 	} else if (iQuiz > 9) {
 		iQuiz = 0;
 	}
+
+	console.log(iQuiz)
 
 	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer)) {
 		console.log("bien");
