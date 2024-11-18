@@ -1,4 +1,4 @@
-function getQuiz(){
+async function getQuiz(){
 	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
 	let data = await response.json();
 
