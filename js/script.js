@@ -4,6 +4,13 @@ let iQuiz = 0;
 let wrongAnswers = 0;
 let correctAnswers = 0;
 
+// RESET TO INITIAL VALUE
+function cleanGlobalVars() {
+	iQuiz = 0;
+	wrongAnswers = 0;
+	correctAnswers = 0;
+}
+
 function cleanQuiz() {
 	let quizContainer = document.getElementById('opts');
 
@@ -24,6 +31,19 @@ function decodeHtml(value) {
 	return txt.value;
 }
 
+function showButtonRetry() {
+	let getOptsContainer = document.getElementById('opts');
+
+	let btnRetry = document.createElement('button');
+	btnRetry.setAttribute('class', 'btn-play');
+	btnRetry.setAttribute('onclick', 'doingListContent(0)');
+	btnRetry.id = 'retry';
+	btnRetry.type = 'button';
+	btnRetry.textContent = 'Try again (3 secs, pls)';
+
+	getOptsContainer.appendChild(btnRetry);
+}
+
 //ASYNC FUNCTIONS
 async function getQuiz() {
 	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
@@ -38,6 +58,12 @@ async function doingListContent(index) {
 
 	if (index == 0)
 		results = await getQuiz();
+
+	if (document.getElementById('retry'))
+		(document.getElementById('retry')).remove();
+
+	if (!results)
+		showButtonRetry();
 
 	let category = decodeHtml(results[index].category);
 	let question = decodeHtml(results[index].question);
@@ -72,7 +98,7 @@ async function doingListContent(index) {
 	for (let i = 0; i < answer.length; i++) {
 		let btnOpts = document.createElement('button');
 		console.log('option' + i + ': ' + answer[i]);
-		btnOpts.setAttribute('onclick', `answerCheck('${answer[i]}')`);
+		btnOpts.setAttribute(`onclick`, `answerCheck('${answer[i]}')`);
 		btnOpts.type = 'button';
 		btnOpts.textContent = answer[i];
 		listQuestions.appendChild(btnOpts);
@@ -96,10 +122,71 @@ function answerCheck(answerPulsed) {
 
 	if (iQuiz == 9) {
 		cleanFullQuiz();
+		chartData();
+		cleanGlobalVars();
 		goTo('results');
 		return;
 	}
 
 	cleanQuiz();
 	doingListContent(++iQuiz);
+}
+// DATE FORMATTER
+function formatDate(fecha) {
+	let dia = fecha.getDate().toString().padStart(2, '0');
+	let mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Mes es base 0
+	let anio = fecha.getFullYear();
+	let hora = fecha.getHours().toString().padStart(2, '0');
+	let minutos = fecha.getMinutes().toString().padStart(2, '0');
+
+	return `${dia}/${mes}/${anio}_${hora}:${minutos}`;
+}
+
+// SAVE THE SCORE
+function chartData() {
+	let dataScore = {
+		correct: correctAnswers,
+		incorrect: wrongAnswers,
+		time: formatDate(new Date()),
+	};
+
+	let score = localStorage.getItem('score');
+	if (score)
+		score = JSON.parse(score)
+	else
+		score = []
+
+	score.push(dataScore);
+	localStorage.setItem('score', JSON.stringify(score));
+}
+
+function createChart() {
+	let varLocalStorage = localStorage.getItem('score');
+	let parsedLS = JSON.parse(varLocalStorage);
+	console.table(parsedLS);
+
+	const ctx = document.getElementById('myChart');
+	new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: [parsedLS[0].time, parsedLS[1].time, parsedLS[2].time],
+			datasets: [{
+				label: 'ACIERTOS',
+				data: [parsedLS[0].correct, parsedLS[1].correct, parsedLS[2].correct],
+				borderWidth: 1
+			},
+			{
+				label: 'FALLOS',
+				data: [parsedLS[0].incorrect, parsedLS[1].incorrect, parsedLS[2].incorrect],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true
+				}
+			}
+		}
+	});
 }

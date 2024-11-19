@@ -9,7 +9,7 @@ const pages = {
 	},
 	results: {
 		title: 'PUNTOS',
-		content: 'ESTÁ PÁGINA ES LA QUE TE MOSTRARÁ LO MALO QUE ERES',
+		content: 'ÚLTIMAS 3 PARTIDAS',
 	}
 };
 
@@ -87,14 +87,19 @@ function questionPage() {
 }
 
 function resultsPage() {
-	let divQuestion = document.createElement('div');
+	let divCanvas = document.createElement('div');
 
-	let pQuestion = document.createElement('p');
-	pQuestion.textContent = 'SE INSERTARÁ UNA GRÁFICA';
+	let chartCanvas = document.createElement('canvas');
+	chartCanvas.id = 'myChart';
 
-	divQuestion.appendChild(pQuestion);
+	if (!(document.getElementById('footer')))
+		createFakeFooter();
 
-	createFakeFooter();
+	divCanvas.appendChild(chartCanvas);
+
+	document.getElementsByClassName('results')[0].appendChild(divCanvas);
+
+	createChart();
 }
 
 function lineBreak(father, manylb) {
