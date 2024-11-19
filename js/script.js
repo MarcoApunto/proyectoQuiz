@@ -1,20 +1,22 @@
-async function getQuiz() {
-	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
-	let data = await response.json();
+// Global var
+let results = [];
+let iQuiz = 0;
+let wrongAnswers = 0;
+let correctAnswers = 0;
 
-	return data['results'];
+function cleanQuiz() {
+	let quizContainer = document.getElementById('opts');
+
+	while (quizContainer.firstChild)
+		quizContainer.removeChild(quizContainer.firstChild);
 }
 
-/* const results = []
-
-fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple')
-	.then(data => data.json())
-	.then(data => {
-		for (let i = 0; i < data['results'].length; i++) {
-			results.push(data['results'][i]);
-		}
-	})
-	.catch(error => console.log("error: " + error)); */
+// UTILS
+function cleanFullQuiz() {
+	let quizContainer = document.getElementsByClassName('quiz-container')[0];
+	if (quizContainer)
+		quizContainer.remove();
+}
 
 function decodeHtml(value) {
 	var txt = document.createElement("textarea");
@@ -22,20 +24,20 @@ function decodeHtml(value) {
 	return txt.value;
 }
 
-function doingListContent(index) {
+//ASYNC FUNCTIONS
+async function getQuiz() {
+	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
+	let data = await response.json();
+
+	return data['results'];
+}
+
+async function doingListContent(index) {
 	if (!index)
 		index = 0;
 
-	let results = [];
 	if (index == 0)
-		getQuiz().then(data => {
-			console.log(data[index]);
-			for (let i = 0; i < data.length; i++) {
-				results.push(data[i]);
-			}
-	})
-
-	console.log('is results: ' + results[index]);
+		results = await getQuiz();
 
 	let category = decodeHtml(results[index].category);
 	let question = decodeHtml(results[index].question);
@@ -62,8 +64,9 @@ function doingListContent(index) {
 	listQuestions.appendChild(titleQuestion);
 	lineBreak(listQuestions, 1);
 
-	let answer = [...incorrectAnswers, correctAnswer];
-	answer.sort(() => Math.random() - 0.5);
+	let answer = [...incorrectAnswers];
+	let randomIndex = Math.floor(Math.random() * (answer.length + 1));
+	answer.splice(randomIndex, 0, correctAnswer);
 
 	console.log('correct answer: ' + correctAnswer);
 	for (let i = 0; i < answer.length; i++) {
@@ -78,51 +81,25 @@ function doingListContent(index) {
 	lineBreak(listQuestions, 2);
 	listQuestions.appendChild(btnExit);
 
-
 	quizContainer.appendChild(listQuestions);
-
 }
 
-function cleanQuizz() {
-	let quizContainer = document.getElementById('opts');
-
-	while (quizContainer.firstChild)
-		quizContainer.removeChild(quizContainer.firstChild);
-}
-
-let iQuiz = 0;
-/* let wrongAnswers = 0;
-let correctAnswers = 0; */
+// CHECK ANSWERS, NEXT QUESTION AND SCORE THINGS
 function answerCheck(answerPulsed) {
-	if (iQuiz == 9) {
-		resultsPage();
-	} else if (iQuiz > 9) {
-		iQuiz = 0;
-	}
-
-	console.log(iQuiz)
 
 	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer)) {
-		console.log("bien");
-		cleanQuizz();
-		doingListContent(++iQuiz);
+		correctAnswers++;
 	}
 	else {
-		console.log("mal");
-		cleanQuizz();
-		doingListContent(++iQuiz);
+		wrongAnswers++;
 	}
+
+	if (iQuiz == 9) {
+		cleanFullQuiz();
+		goTo('results');
+		return;
+	}
+
+	cleanQuiz();
+	doingListContent(++iQuiz);
 }
-
-
-
-/*
-
-0: 
-"December 14, 1946"
-1: 
-"October 27, 1945"
-2: 
-"November 08, 1944"
-		*/
-

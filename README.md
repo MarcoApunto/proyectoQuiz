@@ -4,21 +4,6 @@
 
 ## TO DO:
 
-> [!NOTE]
-> ✅ Hecho main y estilos. Funciona todo perfecto.
-
-> [!NOTE]
-> ✅ SPA HECHO.
-
-> [!NOTE]
-> 🖌 Añadir reglas CSS para el contenido.
-
-> [!NOTE]
-> 🪄 Fetch API -> Analizar✅, entender✅ y usarla❌.
-
-> [!WARNING]
-> ❌ ALGORITMOS.
-
 ✅Estructura de la web.
 
 ✅Estilo de la web: colores, fuentes, distribución, textos...
@@ -51,13 +36,22 @@ function decodeHtml(html) {
 
 ✅Echar par de ojos a la variable iQuiz.
 
-⏳Cuando termine las 10 preguntas, llevarte a la "página" de score.
+✅Cuando termine las 10 preguntas, llevarte a la "página" de score.
 
-⏳Nueva partida debería enseñar otro quiz de 10 preguntas.
+✅Nueva partida debería enseñar otro quiz de 10 preguntas.
 
 ✅Dar estilo al quiz.
 
-⏳⏳⏳Por desglosar puntuación...
+⏳Algunas preguntas, al ser clicadas, salta el siguiente error:
+
+```
+Uncaught SyntaxError: missing ) after argument list
+```
+
+⏳⏳⏳BOSS FINAL:
+	⏳Guardar y recoger score en localStorage
+	⏳Hacer chart.js
+	⏳Enseñar score en resultsPage()
 
 
 ## WEB VIEW ACTUAL
