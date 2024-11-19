@@ -62,7 +62,7 @@ Las tres secciones se ven de tal manera:
 
 ## ANOTACIONES
 
-Colores definitivos para documentar:
+COLORES:
 #D3570080/rgba(211, 87, 0, 0.5), #672B00, #4F2100, #EB6302
 
 FUENTES:
