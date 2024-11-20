@@ -98,7 +98,6 @@ async function doingListContent(index) {
 	let randomIndex = Math.floor(Math.random() * (answer.length + 1));
 	answer.splice(randomIndex, 0, correctAnswer);
 
-	console.log('correct answer: ' + correctAnswer);
 	for (let i = 0; i < answer.length; i++) {
 		let btnOpts = document.createElement('button');
 		btnOpts.addEventListener('click', () => answerCheck(answer[i]));
