@@ -62,7 +62,7 @@ function homePage() {
 	let divQuestion = document.createElement('div')
 
 	let pQuestion = document.createElement('p');
-	pQuestion.textContent = '¡Welcome to the knowledge challenge! In this trivia of 10 questions, we will test your memory, mental sharpness and curiosity about various topics. Each question will have 4 options, but only one will be correct. ¡Show your ingenuity and see how far you can go! Get ready to enjoy and learn while you play.';
+	pQuestion.textContent = 'Welcome to the knowledge challenge! In this trivia of 10 questions, we will test your memory, mental sharpness and curiosity about various topics. Each question will have 4 options, but only one will be correct. Show your ingenuity and see how far you can go! Get ready to enjoy and learn while you play.';
 
 	let pQuestion2 = document.createElement('p');
 	pQuestion2.textContent = 'Will you be able to answer all?';
