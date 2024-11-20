@@ -110,12 +110,12 @@ quizwhiz/
 - JSON data structure
 - Timestamp-based tracking
 
-[!NOTE]
-## 🔜 Future Enhancements
-- Multiple difficulty levels
-- Category selection
-- Additional question sources
-- Enhanced data visualization
+> [!NOTE]
+> ## 🔜 Future Enhancements
+> - Multiple difficulty levels
+> - Category selection
+> - Additional question sources
+> - Enhanced data visualization
 
 ---
 
