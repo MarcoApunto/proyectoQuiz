@@ -1,18 +1,20 @@
+// PAGES
 const pages = {
 	home: {
-		title: '¡QUIZ DICES!',
-		content: 'BUENAS TRIVIALERO',
+		title: 'QUIZ WHIZ!',
+		content: 'WELCOME QUIZZER',
 	},
 	question: {
-		title: '¡NO VA MÁS!',
-		content: 'PULSE EL BOTÓN CUANDO ESTÉS LISTO',
+		title: 'ARE YOU READY?',
+		content: 'PRESS THE BUTTON WHEN YOU ARE READY',
 	},
 	results: {
-		title: 'PUNTOS',
-		content: 'ÚLTIMAS 3 PARTIDAS',
+		title: 'SCORE',
+		content: 'LATEST GAMES',
 	}
 };
 
+// NAVIGATION FOR CHANGE THE PAGE
 function goTo(section) {
 	let idSection = document.getElementById('psa-page');
 
@@ -51,18 +53,19 @@ function goTo(section) {
 			resultsPage();
 		}
 	} else {
-		alert('Error 404: La página no existe.')
+		alert('Error 404: Page not found.')
 	}
 }
 
+// HOME PAGE
 function homePage() {
 	let divQuestion = document.createElement('div')
 
 	let pQuestion = document.createElement('p');
-	pQuestion.textContent = '¡Bienvenido al desafío de conocimientos! En este trivial de 10 preguntas, pondremos a prueba tu memoria, agudeza mental y curiosidad sobre diversos temas. Cada pregunta contará con 4 opciones, pero solo una será la correcta. ¡Demuestra tu ingenio y veamos qué tan lejos llegas! Prepárate para disfrutar y aprender mientras te diviertes.';
+	pQuestion.textContent = '¡Welcome to the knowledge challenge! In this trivia of 10 questions, we will test your memory, mental sharpness and curiosity about various topics. Each question will have 4 options, but only one will be correct. ¡Show your ingenuity and see how far you can go! Get ready to enjoy and learn while you play.';
 
 	let pQuestion2 = document.createElement('p');
-	pQuestion2.textContent = '¿Serás capaz de acertar en todas?';
+	pQuestion2.textContent = 'Will you be able to answer all?';
 
 	divQuestion.appendChild(pQuestion);
 	lineBreak(divQuestion, 1);
@@ -72,13 +75,14 @@ function homePage() {
 	removeFooter();
 }
 
+// QUESTION / QUIZ PAGE
 function questionPage() {
 	let divQuestion = document.createElement('div');
 
 	let btnPlay = document.createElement('button');
 	btnPlay.setAttribute("onclick", "gameStart();")
 	btnPlay.classList.add('btn-play');
-	btnPlay.textContent = "EMPEZAR";
+	btnPlay.textContent = "START";
 
 	divQuestion.appendChild(btnPlay);
 	document.getElementsByClassName('question')[0].appendChild(divQuestion);
@@ -86,11 +90,13 @@ function questionPage() {
 	removeFooter();
 }
 
+// SCORE PAGE
 function resultsPage() {
 	let divCanvas = document.createElement('div');
+	divCanvas.classList.add('canvas-container');
 
 	let chartCanvas = document.createElement('canvas');
-	chartCanvas.id = 'myChart';
+	chartCanvas.id = 'my-chart';
 
 	if (!(document.getElementById('footer')))
 		createFakeFooter();
@@ -102,6 +108,7 @@ function resultsPage() {
 	createChart();
 }
 
+// PUT LINE BREAK (<br>)
 function lineBreak(father, manylb) {
 
 	for (let i = 0; i < manylb; i++) {
@@ -111,6 +118,7 @@ function lineBreak(father, manylb) {
 	}
 }
 
+// CREATE FAKE FOOTER
 function createFakeFooter() {
 	let containerClass = document.getElementsByTagName('div')[1];
 
@@ -119,7 +127,7 @@ function createFakeFooter() {
 
 	let spanFooter = document.createElement('span');
 	spanFooter.classList.add('footer-text');
-	spanFooter.textContent = '© Todos los derechos no reservados han hecho posible la creación de esta web.';
+	spanFooter.textContent = '© All non-reserved rights have made the creation of this web possible.';
 
 	let aLinkedin = document.createElement('a');
 	aLinkedin.href = 'https://www.linkedin.com/in/marcofs/';
@@ -154,6 +162,7 @@ function createFakeFooter() {
 
 }
 
+// REMOVE THE FOOTER
 function removeFooter() {
 	let idFooter = document.getElementById('footer');
 
@@ -162,6 +171,7 @@ function removeFooter() {
 	}
 }
 
+// GAME START
 function gameStart() {
 	let divContainer = document.getElementById('psa-page');
 
@@ -173,13 +183,14 @@ function gameStart() {
 	createGame(divContainer);
 }
 
+// CREATE THE BASE OF THE QUIZ
 function createGame(father) {
 	let divQuiz = document.createElement('div');
 	divQuiz.setAttribute('class', 'quiz-container');
 
 	let divHeader = document.createElement('div');
 	let titleHeader = document.createElement('h1');
-	titleHeader.textContent = '¡QUIZ DICES!';
+	titleHeader.textContent = 'QUIZ WHIZ!';
 
 	let divQuestion = document.createElement('div');
 	
@@ -189,7 +200,7 @@ function createGame(father) {
 	divHeader.appendChild(titleHeader);
 	divQuestion.appendChild(listOptions);
 
-	divQuiz.appendChild(divHeader); /* Contain h1 -> Quiz Dices y contador de preguntas*/
+	divQuiz.appendChild(divHeader);
 	divQuiz.appendChild(divQuestion);
 
 	father.appendChild(divQuiz);

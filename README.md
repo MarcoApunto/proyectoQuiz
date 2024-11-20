@@ -1,70 +1,122 @@
-# HOJA DE RUTA Y ANOTACIONES
+# QuizWhiz! 🎲
 
-## [Enunciado del Proyecto Quiz](./enunciado.md)
+A Single Page Application (SPA) quiz game that tests your knowledge through dynamic questions fetched from the Open Trivia Database.
 
-## TO DO:
+[*Proyecto desarrollado como ejercicio de JavaScript, cumpliendo los requisitos de: SPA, ES6+, API integration, LocalStorage, y Chart.js*]
 
-✅Estructura de la web.
+## 🎯 Project Overview
 
-✅Estilo de la web: colores, fuentes, distribución, textos...
+This project implements a quiz game that:
+- Displays 10 questions with 4 options each
+- Fetches questions from the Open Trivia Database API
+- Tracks and visualizes user scores
+- Works as a Single Page Application
 
-✅DOM avanzado: Creación de SPA, secciones, borrado y creaciones de contenido.
+## ⚙️ Core Features
 
-✅Falso footer.
+### Single Page Application (SPA)
+- Dynamic page navigation without reloads
+- Three main views:
+  - Home (Welcome + Score Chart)
+  - Quiz (Questions)
+  - Results (Final Score)
 
-✅Fetch y guardado de valores para su uso posterior.
+### API Integration
+- Asynchronous question fetching
+- Error handling with retry mechanism
+- Dynamic question parsing and display
 
-✅Decodear formato de la API - Meter el valor en el textarea
+### Data Persistence
+- Score tracking using LocalStorage
+- Historical data visualization using Chart.js
+- Score tracking with timestamps
 
+## 🛠️ Technical Implementation
+
+### Technologies Used
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6+)
+- Chart.js for data visualization
+- FontAwesome icons
+- Google Fonts (Prosto One, Nabla)
+
+### Project Structure
+```tree
+quizwhiz/
+├── index.html              # SPA entry point
+├── styles/
+│   └── styles.css         # Styling implementation
+├── js/
+│   ├── main.js           # SPA logic & UI management
+│   └── script.js         # Quiz & API logic
 ```
-function decodeHtml(html) {
-	var txt = document.createElement("textarea");
-	txt.innerHTML = html;
-	return txt.value;
-}
-```
 
-✅Separar botones del div de la lista.
+### Key Components
 
-✅Estructura pensada para la interfaz del Quiz.
+#### main.js
+- SPA navigation system
+- Dynamic DOM manipulation
+- Page rendering logic
+- UI state management
 
-✅Darle una vuelta con el script: doingListContent()
+#### script.js
+- API communication
+- Quiz game logic
+- Score management
+- LocalStorage integration
+- Chart visualization
 
-✅Algoritmo de aleatoridad de las opciones.
+## 🚀 Setup and Usage
 
-✅"Oculta" la respuesta correcta.
+1. Clone the repository
+2. Open index.html in your browser
+3. No build process required - pure vanilla implementation!
 
-✅Echar par de ojos a la variable iQuiz.
+## 📊 Features in Detail
 
-✅Cuando termine las 10 preguntas, llevarte a la "página" de score.
+### Quiz Implementation
+- 10 questions per game
+- 4 multiple choice options per question
+- Real-time score tracking
+- Dynamic question loading from API
 
-✅Nueva partida debería enseñar otro quiz de 10 preguntas.
+### Data Visualization
+- Historical score tracking
+- Performance trends visualization
+- Date-based score analysis
 
-✅Dar estilo al quiz.
+### Error Handling
+- API connection retry mechanism
+- User-friendly error messages
+- Graceful fallbacks
 
-⏳Algunas preguntas, al ser clicadas, salta el siguiente error:
+## 🌟 Technical Highlights
 
-```
-Uncaught SyntaxError: missing ) after argument list
-```
+### ES6+ Features
+- Async/await for API calls
+- Arrow functions
+- Template literals
+- Destructuring
+- Modern array methods
 
-⏳⏳⏳BOSS FINAL:
-	⏳Guardar y recoger score en localStorage
-	⏳Hacer chart.js
-	⏳Enseñar score en resultsPage()
+### DOM Manipulation
+- Dynamic content creation
+- Event delegation
+- State-based UI updates
 
+### Storage Implementation
+- Efficient LocalStorage usage
+- JSON data structure
+- Timestamp-based tracking
 
-## WEB VIEW ACTUAL
+[!NOTE]
+## 🔜 Future Enhancements
+- Multiple difficulty levels
+- Category selection
+- Additional question sources
+- Enhanced data visualization
 
-Las tres secciones se ven de tal manera:
+---
 
-![img](./imgProgresoProyecto/webActual.png)
-
-## ANOTACIONES
-
-COLORES:
-#D3570080/rgba(211, 87, 0, 0.5), #672B00, #4F2100, #EB6302
-
-FUENTES:
-- https://fonts.google.com/specimen/Prosto+One?preview.text=Bienvenutti&lang=es_Latn&categoryFilters=Appearance:%2FTheme%2FTechno
-- https://fonts.google.com/specimen/Nabla?preview.text=Bienvenutti&lang=es_Latn&categoryFilters=Appearance:%2FTheme%2FTechno
+*Developed as part of a JavaScript development course, focusing on modern web development practices and clean code principles (or I least I try to do it).*

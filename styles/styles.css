@@ -109,12 +109,23 @@ body {
 	text-align: center;
 }
 
-.quiz-container {
-	text-align: center;
+.canvas-container {
+	position: relative;
+	width: 90vw;
+	/* Aumentado de 80 a 90 */
+	height: 50vh;
+	/* Aumentado de 60 a 70 */
+	margin: 0 auto;
+	padding: 20px;
 }
 
-ul li {
-	list-style-type: none;
+#my-chart {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.quiz-container {
+	text-align: center;
 }
 
 .btn-line {

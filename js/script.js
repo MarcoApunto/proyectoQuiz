@@ -1,16 +1,17 @@
-// Global var
+// GLOBAL VARS
 let results = [];
 let iQuiz = 0;
 let wrongAnswers = 0;
 let correctAnswers = 0;
 
-// RESET TO INITIAL VALUE
+// RESET TO INITIAL VALUE THE GLOBAL VARS
 function cleanGlobalVars() {
 	iQuiz = 0;
 	wrongAnswers = 0;
 	correctAnswers = 0;
 }
 
+// CLEAN THE QUIZ OPTIONS FOR THE NEXT QUESTION
 function cleanQuiz() {
 	let quizContainer = document.getElementById('opts');
 
@@ -18,19 +19,21 @@ function cleanQuiz() {
 		quizContainer.removeChild(quizContainer.firstChild);
 }
 
-// UTILS
+// CLEAN THE QUIZ CONTAINER AT THE END OF THE QUIZ
 function cleanFullQuiz() {
 	let quizContainer = document.getElementsByClassName('quiz-container')[0];
 	if (quizContainer)
 		quizContainer.remove();
 }
 
+// DECODE THE TEXT FROM THE API TO SHOW THE QUESTION CORRECTLY
 function decodeHtml(value) {
 	var txt = document.createElement("textarea");
 	txt.innerHTML = value;
 	return txt.value;
 }
 
+// SHOW THE RETRY BUTTON IF THE FETCH FAILS
 function showButtonRetry() {
 	let getOptsContainer = document.getElementById('opts');
 
@@ -44,7 +47,7 @@ function showButtonRetry() {
 	getOptsContainer.appendChild(btnRetry);
 }
 
-//ASYNC FUNCTIONS
+//ASYNC FUNCTIONS FOR FETCHING DATA
 async function getQuiz() {
 	let response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=multiple');
 	let data = await response.json();
@@ -52,6 +55,7 @@ async function getQuiz() {
 	return data['results'];
 }
 
+//ASYNC FUNCTIONS FOR GENERATE THE QUIZ
 async function doingListContent(index) {
 	if (!index)
 		index = 0;
@@ -97,8 +101,7 @@ async function doingListContent(index) {
 	console.log('correct answer: ' + correctAnswer);
 	for (let i = 0; i < answer.length; i++) {
 		let btnOpts = document.createElement('button');
-		console.log('option' + i + ': ' + answer[i]);
-		btnOpts.setAttribute(`onclick`, `answerCheck('${answer[i]}')`);
+		btnOpts.addEventListener('click', () => answerCheck(answer[i]));
 		btnOpts.type = 'button';
 		btnOpts.textContent = answer[i];
 		listQuestions.appendChild(btnOpts);
@@ -110,7 +113,7 @@ async function doingListContent(index) {
 	quizContainer.appendChild(listQuestions);
 }
 
-// CHECK ANSWERS, NEXT QUESTION AND SCORE THINGS
+// CHECK THE ANSWER, NEXT QUESTION AND SCORE THINGS
 function answerCheck(answerPulsed) {
 
 	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer)) {
@@ -131,18 +134,19 @@ function answerCheck(answerPulsed) {
 	cleanQuiz();
 	doingListContent(++iQuiz);
 }
-// DATE FORMATTER
-function formatDate(fecha) {
-	let dia = fecha.getDate().toString().padStart(2, '0');
-	let mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Mes es base 0
-	let anio = fecha.getFullYear();
-	let hora = fecha.getHours().toString().padStart(2, '0');
-	let minutos = fecha.getMinutes().toString().padStart(2, '0');
 
-	return `${dia}/${mes}/${anio}_${hora}:${minutos}`;
+// DATE FORMATTER
+function formatDate(date) {
+	let day = date.getDate().toString().padStart(2, '0');
+	let month = (date.getMonth() + 1).toString().padStart(2, '0');
+	let year = date.getFullYear();
+	let hour = date.getHours().toString().padStart(2, '0');
+	let minutes = date.getMinutes().toString().padStart(2, '0');
+
+	return `${day}/${month}/${year}_${hour}:${minutes}`;
 }
 
-// SAVE THE SCORE
+// SAVE THE SCORE IN THE LOCAL STORAGE
 function chartData() {
 	let dataScore = {
 		correct: correctAnswers,
@@ -160,28 +164,37 @@ function chartData() {
 	localStorage.setItem('score', JSON.stringify(score));
 }
 
+// CREATE THE CHART FOR THE SCORE
 function createChart() {
-	let varLocalStorage = localStorage.getItem('score');
-	let parsedLS = JSON.parse(varLocalStorage);
-	console.table(parsedLS);
+	let varLocalStorage = JSON.parse(localStorage.getItem('score'));
 
-	const ctx = document.getElementById('myChart');
+	let labels = varLocalStorage.map(elem => elem.time);
+	let corrects = varLocalStorage.map(elem => elem.correct);
+	let incorrects = varLocalStorage.map(elem => elem.incorrect);
+
+	const ctx = document.getElementById('my-chart');
 	new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: [parsedLS[0].time, parsedLS[1].time, parsedLS[2].time],
+			labels: labels,
 			datasets: [{
-				label: 'ACIERTOS',
-				data: [parsedLS[0].correct, parsedLS[1].correct, parsedLS[2].correct],
-				borderWidth: 1
+				label: 'CORRECTS',
+				data: corrects,
+				borderWidth: 1,
+				backgroundColor: '#EB6302',
+				borderColor: '#672b00',
 			},
 			{
-				label: 'FALLOS',
-				data: [parsedLS[0].incorrect, parsedLS[1].incorrect, parsedLS[2].incorrect],
-				borderWidth: 1
+				label: 'INCORRECTS',
+				data: incorrects,
+				borderWidth: 1,
+				backgroundColor: '#672b00',
+				borderColor: '#EB6302',
 			}]
 		},
 		options: {
+			responsive: true,
+			maintainAspectRatio: false,
 			scales: {
 				y: {
 					beginAtZero: true
