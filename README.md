@@ -17,7 +17,7 @@ This project implements a quiz game that:
 ### Single Page Application (SPA)
 - Dynamic page navigation without reloads
 - Three main views:
-  - Home (Welcome + Score Chart)
+  - Home (Welcome)
   - Quiz (Questions)
   - Results (Final Score)
 
