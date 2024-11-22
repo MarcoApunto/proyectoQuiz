@@ -85,9 +85,10 @@ async function doingListContent(index) {
 	titleCategory.textContent = category;
 
 	let btnExit = document.createElement('button');
+	btnExit.setAttribute('onclick', 'goTo("question")');
 	btnExit.setAttribute('class', 'btn-play');
 	btnExit.type = 'button'
-	btnExit.textContent = 'Salir'
+	btnExit.textContent = 'Exit'
 
 	listQuestions.appendChild(titleCategory);
 	lineBreak(listQuestions, 1);
