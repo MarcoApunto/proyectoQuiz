@@ -56,10 +56,7 @@ async function getQuiz() {
 }
 
 //ASYNC FUNCTIONS FOR GENERATE THE QUIZ
-async function doingListContent(index) {
-	if (!index)
-		index = 0;
-
+async function doingListContent(index = 0) {
 	if (index == 0)
 		results = await getQuiz();
 
@@ -116,12 +113,10 @@ async function doingListContent(index) {
 // CHECK THE ANSWER, NEXT QUESTION AND SCORE THINGS
 function answerCheck(answerPulsed) {
 
-	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer)) {
+	if (answerPulsed == decodeHtml(results[iQuiz].correct_answer))
 		correctAnswers++;
-	}
-	else {
+	else
 		wrongAnswers++;
-	}
 
 	if (iQuiz == 9) {
 		cleanFullQuiz();
